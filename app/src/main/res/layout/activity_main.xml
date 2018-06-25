@@ -4,7 +4,7 @@
     <data>
         <variable
             name="main"
-            type="com.dot.dotkotlinboilerplate.viewmodels.MainViewModel"/>
+            type="com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel"/>
     </data>
 
     <RelativeLayout

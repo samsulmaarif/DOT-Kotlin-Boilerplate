@@ -54,4 +54,12 @@ dependencies {
 
     kapt "com.android.databinding:compiler:$project.dataBindingCompilerVersion"
     implementation "com.android.support:recyclerview-v7:$project.supportLibraryVersion"
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$project.okHttp3Version"
+
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$project.rxKotlinVersion"
 }
