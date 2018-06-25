@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     signingConfigs {
@@ -38,13 +39,19 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://info-madiun.firebaseapp.com/\""
         }
     }
+    dataBinding{
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    kapt "com.android.databinding:compiler:$project.dataBindingCompilerVersion"
+    implementation "com.android.support:recyclerview-v7:$project.supportLibraryVersion"
 }
