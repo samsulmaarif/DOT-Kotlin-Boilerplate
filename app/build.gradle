@@ -14,8 +14,18 @@ android {
     }
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "default"
+    productFlavors{
+        dev {
+            buildConfigField "String", "BASE_URL", "\"https://info-madiun.firebaseapp.com/\""
         }
     }
 }
