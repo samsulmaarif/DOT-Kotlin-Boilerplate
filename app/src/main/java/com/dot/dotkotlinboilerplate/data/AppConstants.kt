@@ -1,6 +1,6 @@
 package com.dot.dotkotlinboilerplate.data
 
-object AppData {
+object AppConstants {
 
     const val TAG_DEBUG = "result_debug"
     const val TAG_ERROR = "result_error"

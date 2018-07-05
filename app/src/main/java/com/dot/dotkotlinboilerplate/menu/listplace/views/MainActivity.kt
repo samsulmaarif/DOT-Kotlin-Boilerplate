@@ -14,6 +14,13 @@ class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setupBinding()
+        viewModel.requestListPlace()
+
+    }
+
+    private fun setupBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = MainViewModel(this)
         binding.main = viewModel
