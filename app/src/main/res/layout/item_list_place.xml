@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/frameLayoutImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageViewItemListPlace"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_view_item_list_place_height"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/image_placeholder"/>
+
+        <View
+            android:background="@drawable/list_place_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_view_item_list_place_height"/>
+
+    </FrameLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_view_item_list_place_margin"
+        android:layout_marginRight="@dimen/text_view_item_list_place_margin"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/dummy_name"
+        android:layout_above="@id/textViewLocation"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_view_item_list_place_margin"
+        android:layout_marginRight="@dimen/text_view_item_list_place_margin"
+        android:layout_marginBottom="@dimen/text_view_item_list_place_margin"
+        android:textColor="@android:color/white"
+        android:text="@string/dummy_name"
+        android:layout_alignBottom="@id/frameLayoutImage"/>
+
+</RelativeLayout>

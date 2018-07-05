@@ -14,12 +14,12 @@ class MainViewModel(private val listPlaceRepository: ListPlaceRepository) {
     private val listPlaceResponse = ListPlaceResponse()
     private val compositeDisposable = CompositeDisposable()
 
-    public var isLoading: ObservableField<Boolean>  = ObservableField()
+    var isLoading: ObservableField<Boolean>  = ObservableField()
 
     fun requestListPlace(){
         isLoading.set(true)
         compositeDisposable.add(
-        listPlaceResponse.getListPlace()
+            listPlaceResponse.getListPlace()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
