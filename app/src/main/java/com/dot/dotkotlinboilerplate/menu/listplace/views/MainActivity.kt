@@ -20,6 +20,8 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
         super.onCreate(savedInstanceState)
 
         setupBinding()
+        setupSwipeRefresh()
+
         viewModel.requestListPlace()
 
     }
@@ -33,6 +35,13 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = MainViewModel(this)
         binding.main = viewModel
+    }
+
+    private fun setupSwipeRefresh(){
+        binding.swipeRefreshLayoutMain.setOnRefreshListener {
+            binding.swipeRefreshLayoutMain.isRefreshing = false
+            viewModel.requestListPlace()
+        }
     }
 
     override fun onGetListPlaceSuccess(listPlaceModel: ListPlaceModel) {
