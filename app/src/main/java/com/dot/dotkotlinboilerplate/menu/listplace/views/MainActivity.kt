@@ -12,6 +12,7 @@ import com.dot.dotkotlinboilerplate.menu.listplace.adapters.ListPlaceAdapter
 import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
 import com.dot.dotkotlinboilerplate.menu.listplace.repositories.ListPlaceRepository
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity: AppCompatActivity(), ListPlaceRepository {
 
@@ -19,6 +20,7 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
     private lateinit var viewModel: MainViewModel
 
     private lateinit var adapter: ListPlaceAdapter
+    private var listPlace: MutableList<ListPlaceModel.ListPlace> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +55,17 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
         binding.recyclerViewMain.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewMain.setHasFixedSize(true)
 
-        adapter = ListPlaceAdapter(this)
+        adapter = ListPlaceAdapter(this, listPlace)
         binding.recyclerViewMain.adapter = adapter
     }
 
     override fun onGetListPlaceSuccess(listPlaceModel: ListPlaceModel) {
         Log.d(AppConstants.TAG_DEBUG,"MainActivity # jumlah data : ${listPlaceModel.data?.size}")
+        listPlace.clear()
+        listPlace.addAll(listPlaceModel.data!!)
+        recyclerViewMain.post {
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun onGetListPlaceError() {

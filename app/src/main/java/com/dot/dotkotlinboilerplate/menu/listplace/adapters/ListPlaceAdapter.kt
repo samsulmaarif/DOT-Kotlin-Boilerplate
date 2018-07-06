@@ -7,23 +7,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dot.dotkotlinboilerplate.R
+import com.dot.dotkotlinboilerplate.databinding.ItemListPlaceBinding
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.ItemListPlaceViewModel
 
-class ListPlaceAdapter(private val activity: Activity): RecyclerView.Adapter<ListPlaceAdapter.ItemListPlaceViewHolder>() {
+class ListPlaceAdapter(private val activity: Activity, private var listPlace: MutableList<ListPlaceModel.ListPlace>): RecyclerView.Adapter<ListPlaceAdapter.ItemListPlaceViewHolder>() {
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ItemListPlaceViewHolder {
-        val view: View = LayoutInflater.from(activity).inflate(R.layout.item_list_place, p0, false)
-        return ItemListPlaceViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ItemListPlaceViewHolder {
+        val binding: ItemListPlaceBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.item_list_place, parent, false)
+        return ItemListPlaceViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return listPlace.size
     }
 
-    override fun onBindViewHolder(p0: ItemListPlaceViewHolder, p1: Int) {
-
+    override fun onBindViewHolder(holder: ItemListPlaceViewHolder, position: Int) {
+        val fixPosition = holder.adapterPosition
+        holder.bindData(listPlace[fixPosition])
     }
 
-    class ItemListPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ItemListPlaceViewHolder(private val binding: ItemListPlaceBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        private val viewModel = ItemListPlaceViewModel()
+
+        fun bindData(model: ListPlaceModel.ListPlace){
+            binding.itemListPlace = viewModel
+            viewModel.setupData(model)
+
+        }
     }
 }
