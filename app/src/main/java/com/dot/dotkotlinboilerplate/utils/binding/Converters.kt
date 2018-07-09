@@ -26,29 +26,29 @@ class Converters {
         }
 
         @JvmStatic
-        @BindingAdapter("bind:showRecycler")
-        fun showRecycler(recyclerView: RecyclerView, hide: Boolean){
+        @BindingAdapter("bind:showView")
+        fun showView(view: View, hide: Boolean){
             if(hide) {
-                recyclerView.alpha = 0f
-                recyclerView.animate().alpha(1f).duration = AppConstants.GLOBAL_ANIM_DURATION
+                view.alpha = 0f
+                view.animate().alpha(1f).duration = AppConstants.GLOBAL_ANIM_DURATION
             }
         }
 
         @JvmStatic
-        @BindingAdapter("bind:hideProgressBar")
-        fun hideProgressBar(progressBar: ProgressBar, hide: Boolean){
+        @BindingAdapter("bind:hideView")
+        fun hideView(view: View, hide: Boolean){
             if (hide) {
-                progressBar.visibility = View.VISIBLE
-                progressBar.alpha = 1f
+                view.visibility = View.VISIBLE
+                view.alpha = 1f
             } else {
-                progressBar.animate().alpha(0f).setDuration(AppConstants.GLOBAL_ANIM_DURATION).setListener(object : Animator.AnimatorListener {
+                view.animate().alpha(0f).setDuration(AppConstants.GLOBAL_ANIM_DURATION).setListener(object : Animator.AnimatorListener {
 
                     override fun onAnimationRepeat(p0: Animator?) {
 
                     }
 
                     override fun onAnimationEnd(p0: Animator?) {
-                        progressBar.visibility = View.INVISIBLE
+                        view.visibility = View.INVISIBLE
                     }
 
                     override fun onAnimationStart(p0: Animator?) {

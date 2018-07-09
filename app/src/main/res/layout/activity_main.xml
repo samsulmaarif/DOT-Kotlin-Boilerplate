@@ -44,7 +44,7 @@
                     android:id="@+id/recyclerViewMain"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:showRecycler="@{safeUnbox(main.isLoading)}"/>
+                    app:showView="@{safeUnbox(main.isLoading)}"/>
 
             </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                app:hideProgressBar="@{safeUnbox(main.isLoading)}"/>
+                app:hideView="@{safeUnbox(main.isLoading)}"/>
 
         </RelativeLayout>
 
