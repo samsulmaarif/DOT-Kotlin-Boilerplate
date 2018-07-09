@@ -23,16 +23,9 @@ class ListPlaceAdapter(private val activity: Activity, private var listPlace: Mu
 
     override fun onBindViewHolder(holder: ItemListPlaceViewHolder, position: Int) {
         val fixPosition = holder.adapterPosition
-        holder.bindData(listPlace[fixPosition])
+        holder.binding.itemListPlace = ItemListPlaceViewModel(listPlace[fixPosition])
+        holder.binding.executePendingBindings()
     }
 
-    class ItemListPlaceViewHolder(private val binding: ItemListPlaceBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        private val viewModel = ItemListPlaceViewModel()
-
-        fun bindData(model: ListPlaceModel.ListPlace){
-            binding.itemListPlace = viewModel
-            viewModel.setupData(model)
-        }
-    }
+    class ItemListPlaceViewHolder(val binding: ItemListPlaceBinding) : RecyclerView.ViewHolder(binding.root)
 }

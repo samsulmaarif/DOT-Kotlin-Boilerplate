@@ -3,15 +3,10 @@ package com.dot.dotkotlinboilerplate.menu.listplace.viewmodels
 import android.databinding.ObservableField
 import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
 
-class ItemListPlaceViewModel {
+class ItemListPlaceViewModel(model: ListPlaceModel.ListPlace) {
 
-    var title: ObservableField<String> = ObservableField()
-    var location: ObservableField<String> = ObservableField()
-    var imageUrl: ObservableField<String> = ObservableField();
+    var title: ObservableField<String?> = ObservableField(model.name)
+    var location: ObservableField<String?> = ObservableField(model.location)
+    var imageUrl: ObservableField<String?> = ObservableField(model.image)
 
-    fun setupData(model: ListPlaceModel.ListPlace){
-        title.set(model.name)
-        location.set(model.location)
-        imageUrl.set(model.image)
-    }
 }

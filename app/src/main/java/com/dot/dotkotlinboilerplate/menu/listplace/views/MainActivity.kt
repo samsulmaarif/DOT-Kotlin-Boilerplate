@@ -1,5 +1,6 @@
 package com.dot.dotkotlinboilerplate.menu.listplace.views
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -41,7 +42,8 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
 
     private fun setupBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = MainViewModel(this)
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel.setListPlaceRepository(this)
         binding.main = viewModel
     }
 

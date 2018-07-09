@@ -1,5 +1,6 @@
 package com.dot.dotkotlinboilerplate.menu.listplace.viewmodels
 
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import com.dot.dotkotlinboilerplate.menu.listplace.repositories.ListPlaceRepository
 import com.dot.dotkotlinboilerplate.networks.ListPlaceResponse
@@ -9,12 +10,18 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private val listPlaceRepository: ListPlaceRepository) {
+class MainViewModel: ViewModel() {
+
+    private lateinit var listPlaceRepository: ListPlaceRepository
 
     private val listPlaceResponse = ListPlaceResponse()
     private val compositeDisposable = CompositeDisposable()
 
     var isLoading: ObservableField<Boolean>  = ObservableField()
+
+    fun setListPlaceRepository(listPlaceRepository: ListPlaceRepository){
+        this.listPlaceRepository = listPlaceRepository
+    }
 
     fun requestListPlace(){
         isLoading.set(true)
