@@ -2,9 +2,7 @@ package com.dot.dotkotlinboilerplate.utils.binding
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.AppCompatImageView
-import android.transition.Transition
 import com.bumptech.glide.GenericTransitionOptions
-import com.bumptech.glide.TransitionOptions
 
 import com.dot.dotkotlinboilerplate.utils.glide.GlideApp
 

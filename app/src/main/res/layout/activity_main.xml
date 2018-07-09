@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View"/>
@@ -8,30 +9,53 @@
             type="com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel"/>
     </data>
 
-    <RelativeLayout
-        android:id="@+id/layoutMain"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayoutMain"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewMain"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarMain"
+                android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/toolbarStyle"
+                app:layout_scrollFlags="scroll|enterAlways"/>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </android.support.design.widget.AppBarLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBarMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="@{main.isLoading() ? View.VISIBLE : View.INVISIBLE }"/>
+        <RelativeLayout
+            android:id="@+id/layoutMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </RelativeLayout>
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayoutMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBarMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="@{main.isLoading() ? View.VISIBLE : View.INVISIBLE }"/>
+
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
 
 </layout>

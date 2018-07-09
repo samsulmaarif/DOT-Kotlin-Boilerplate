@@ -26,6 +26,7 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
         super.onCreate(savedInstanceState)
 
         setupBinding()
+        setupToolbar()
         setupSwipeRefresh()
         setupRecycler()
 
@@ -42,6 +43,10 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = MainViewModel(this)
         binding.main = viewModel
+    }
+
+    private fun setupToolbar(){
+        setSupportActionBar(binding.toolbarMain)
     }
 
     private fun setupSwipeRefresh(){
