@@ -4,7 +4,6 @@ import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.dot.dotkotlinboilerplate.R
 import com.dot.dotkotlinboilerplate.databinding.ItemListPlaceBinding
@@ -34,7 +33,6 @@ class ListPlaceAdapter(private val activity: Activity, private var listPlace: Mu
         fun bindData(model: ListPlaceModel.ListPlace){
             binding.itemListPlace = viewModel
             viewModel.setupData(model)
-
         }
     }
 }

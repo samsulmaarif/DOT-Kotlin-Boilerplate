@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/image_view_item_list_place_height"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/image_placeholder"/>
+                app:srcCompat="@drawable/image_placeholder"
+                app:loadImage="@{itemListPlace.imageUrl}"/>
 
             <View
                 android:background="@drawable/list_place_gradient"
