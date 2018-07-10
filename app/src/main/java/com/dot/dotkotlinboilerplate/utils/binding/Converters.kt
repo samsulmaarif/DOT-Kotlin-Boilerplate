@@ -3,11 +3,7 @@ package com.dot.dotkotlinboilerplate.utils.binding
 import android.animation.Animator
 import android.databinding.BindingAdapter
 import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
-import android.view.animation.Animation
-import android.widget.ProgressBar
 import com.bumptech.glide.GenericTransitionOptions
 import com.dot.dotkotlinboilerplate.data.AppConstants
 

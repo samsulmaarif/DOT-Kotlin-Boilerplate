@@ -1,8 +1,11 @@
 package com.dot.dotkotlinboilerplate.menu.listplace.viewmodels
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
-import com.dot.dotkotlinboilerplate.menu.listplace.repositories.ListPlaceRepository
+import android.util.Log
+import com.dot.dotkotlinboilerplate.data.AppConstants
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
 import com.dot.dotkotlinboilerplate.networks.ListPlaceResponse
 
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,16 +15,11 @@ import io.reactivex.schedulers.Schedulers
 
 class MainViewModel: ViewModel() {
 
-    private lateinit var listPlaceRepository: ListPlaceRepository
-
     private val listPlaceResponse = ListPlaceResponse()
     private val compositeDisposable = CompositeDisposable()
 
     var isLoading: ObservableField<Boolean>  = ObservableField()
-
-    fun setListPlaceRepository(listPlaceRepository: ListPlaceRepository){
-        this.listPlaceRepository = listPlaceRepository
-    }
+    var listData: MutableLiveData<ListPlaceModel> = MutableLiveData()
 
     fun requestListPlace(){
         isLoading.set(true)
@@ -31,10 +29,11 @@ class MainViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onNext = {
-                            listPlaceRepository.onGetListPlaceSuccess(it)
+                            listData.value = it
                         },
                         onError = {
-                            listPlaceRepository.onGetListPlaceError()
+                            it.printStackTrace()
+                            Log.e(AppConstants.TAG_ERROR,"MainViewModel # error requestListPlace ${it.message}")
                         },
                         onComplete = {
                             isLoading.set(false)

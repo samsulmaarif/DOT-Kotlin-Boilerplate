@@ -1,21 +1,19 @@
 package com.dot.dotkotlinboilerplate.menu.listplace.views
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.dot.dotkotlinboilerplate.R
-import com.dot.dotkotlinboilerplate.data.AppConstants
 import com.dot.dotkotlinboilerplate.databinding.ActivityMainBinding
 import com.dot.dotkotlinboilerplate.menu.listplace.adapters.ListPlaceAdapter
 import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
-import com.dot.dotkotlinboilerplate.menu.listplace.repositories.ListPlaceRepository
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity: AppCompatActivity(), ListPlaceRepository {
+class MainActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -43,8 +41,11 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
     private fun setupBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.setListPlaceRepository(this)
         binding.main = viewModel
+
+        viewModel.listData.observe(this, Observer {
+            onListDataChange(it!!)
+        })
     }
 
     private fun setupToolbar(){
@@ -59,24 +60,20 @@ class MainActivity: AppCompatActivity(), ListPlaceRepository {
     }
 
     private fun setupRecycler(){
-        binding.recyclerViewMain.layoutManager = LinearLayoutManager(this)
+        val lManager = LinearLayoutManager(this)
+        binding.recyclerViewMain.layoutManager = lManager
         binding.recyclerViewMain.setHasFixedSize(true)
 
         adapter = ListPlaceAdapter(this, listPlace)
         binding.recyclerViewMain.adapter = adapter
     }
 
-    override fun onGetListPlaceSuccess(listPlaceModel: ListPlaceModel) {
-        Log.d(AppConstants.TAG_DEBUG,"MainActivity # jumlah data : ${listPlaceModel.data?.size}")
+    private fun onListDataChange(listPlaceModel: ListPlaceModel){
         listPlace.clear()
         listPlace.addAll(listPlaceModel.data!!)
         recyclerViewMain.post {
             adapter.notifyDataSetChanged()
         }
-    }
-
-    override fun onGetListPlaceError() {
-
     }
 
 }
