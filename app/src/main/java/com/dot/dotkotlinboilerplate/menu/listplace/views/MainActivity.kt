@@ -10,6 +10,7 @@ import com.dot.dotkotlinboilerplate.R
 import com.dot.dotkotlinboilerplate.databinding.ActivityMainBinding
 import com.dot.dotkotlinboilerplate.menu.listplace.adapters.ListPlaceAdapter
 import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.ItemListPlaceViewModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,7 +20,7 @@ class MainActivity: AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
 
     private lateinit var adapter: ListPlaceAdapter
-    private var listPlace: MutableList<ListPlaceModel.ListPlace> = mutableListOf()
+    private var listPlace: MutableList<ItemListPlaceViewModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +71,10 @@ class MainActivity: AppCompatActivity() {
 
     private fun onListDataChange(listPlaceModel: ListPlaceModel){
         listPlace.clear()
-        listPlace.addAll(listPlaceModel.data!!)
+        for(i: Int in 0 until listPlaceModel.data?.size!!){
+            val vm = ItemListPlaceViewModel(listPlaceModel.data[i])
+            listPlace.add(vm)
+        }
         recyclerViewMain.post {
             adapter.notifyDataSetChanged()
         }
