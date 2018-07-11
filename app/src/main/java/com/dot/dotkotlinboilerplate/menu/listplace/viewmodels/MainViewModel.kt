@@ -1,7 +1,8 @@
 package com.dot.dotkotlinboilerplate.menu.listplace.viewmodels
 
+import android.app.Application
+import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import android.util.Log
 import com.dot.dotkotlinboilerplate.data.AppConstants
@@ -13,7 +14,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel: ViewModel() {
+class MainViewModel(application: Application): AndroidViewModel(application) {
 
     private val listPlaceResponse = ListPlaceResponse()
     private val compositeDisposable = CompositeDisposable()
@@ -29,6 +30,7 @@ class MainViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onNext = {
+                            Log.d(AppConstants.TAG_DEBUG,"MainViewModel # data size ${it.data?.size}")
                             listData.value = it
                         },
                         onError = {
