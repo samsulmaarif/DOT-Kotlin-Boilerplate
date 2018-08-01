@@ -13,7 +13,7 @@ class Converters {
 
     companion object {
         @JvmStatic
-        @BindingAdapter("bind:loadImage")
+        @BindingAdapter("loadImage")
         fun loadImage(imageView: AppCompatImageView, imageUrl: String) {
             GlideApp.with(imageView.context.applicationContext)
                     .load(imageUrl)
@@ -22,7 +22,7 @@ class Converters {
         }
 
         @JvmStatic
-        @BindingAdapter("bind:showView")
+        @BindingAdapter("showView")
         fun showView(view: View, hide: Boolean){
             if(hide) {
                 view.alpha = 0f
@@ -31,7 +31,7 @@ class Converters {
         }
 
         @JvmStatic
-        @BindingAdapter("bind:hideView")
+        @BindingAdapter("hideView")
         fun hideView(view: View, hide: Boolean){
             if (hide) {
                 view.visibility = View.VISIBLE

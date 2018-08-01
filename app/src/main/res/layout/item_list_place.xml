@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -24,7 +24,7 @@
                 android:layout_height="@dimen/image_view_item_list_place_height"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/image_placeholder"
-                app:loadImage="@{itemListPlace.imageUrl}"/>
+                bind:loadImage="@{itemListPlace.imageUrl}" />
 
             <View
                 android:background="@drawable/list_place_gradient"
