@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.dot.dotkotlinboilerplate.R
 import com.dot.dotkotlinboilerplate.databinding.ActivityMainBinding
 import com.dot.dotkotlinboilerplate.menu.listplace.adapters.ListPlaceAdapter
-import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.ItemListPlaceViewModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,7 +44,7 @@ class MainActivity: AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.main = viewModel
 
-        viewModel.listData.observe(this, Observer {
+        viewModel.listDataResponse.observe(this, Observer {
             onListDataChange(it!!)
         })
     }
@@ -69,10 +69,10 @@ class MainActivity: AppCompatActivity() {
         binding.recyclerViewMain.adapter = adapter
     }
 
-    private fun onListDataChange(listPlaceModel: ListPlaceModel){
+    private fun onListDataChange(listPlaceResponseModel: ListPlaceResponseModel){
         listPlace.clear()
-        for(i: Int in 0 until listPlaceModel.data?.size!!){
-            val vm = ItemListPlaceViewModel(listPlaceModel.data[i])
+        for(i: Int in 0 until listPlaceResponseModel.data?.size!!){
+            val vm = ItemListPlaceViewModel(listPlaceResponseModel.data[i])
             listPlace.add(vm)
         }
         recyclerViewMain.post {

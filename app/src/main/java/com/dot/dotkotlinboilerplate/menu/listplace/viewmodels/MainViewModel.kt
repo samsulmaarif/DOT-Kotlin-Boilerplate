@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
-import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel
 import com.dot.dotkotlinboilerplate.networks.ListPlaceResponse
 
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +17,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
 
     var isLoading: ObservableField<Boolean>  = ObservableField()
-    var listData: MutableLiveData<ListPlaceModel> = MutableLiveData()
+    var listDataResponse: MutableLiveData<ListPlaceResponseModel> = MutableLiveData()
 
     fun requestListPlace(){
         isLoading.set(true)
@@ -28,7 +28,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
                     .subscribe(
                             {
                                 isLoading.set(false)
-                                listData.value = it
+                                listDataResponse.value = it
                             },
                             {
                                 isLoading.set(false)
