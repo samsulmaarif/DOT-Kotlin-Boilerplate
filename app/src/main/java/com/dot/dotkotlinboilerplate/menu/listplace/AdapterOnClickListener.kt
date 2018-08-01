@@ -1,7 +1,7 @@
 package com.dot.dotkotlinboilerplate.menu.listplace
 
-import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel
 
 interface AdapterOnClickListener {
-    fun onItemClickListener(listPlaceModel: ListPlaceModel)
+    fun onItemClickListener(listPlaceModel: ListPlaceResponseModel.ListPlaceModel)
 }

@@ -12,7 +12,7 @@ import com.dot.dotkotlinboilerplate.data.AppConstants
 import com.dot.dotkotlinboilerplate.databinding.ActivityMainBinding
 import com.dot.dotkotlinboilerplate.menu.listplace.AdapterOnClickListener
 import com.dot.dotkotlinboilerplate.menu.listplace.adapters.ListPlaceAdapter
-import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel.ListPlaceModel
 import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.ItemListPlaceViewModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel
@@ -75,7 +75,7 @@ class MainActivity: AppCompatActivity(), AdapterOnClickListener {
 
     private fun onListDataChange(listPlaceResponseModel: ListPlaceResponseModel){
         listPlace.clear()
-        for(i: Int in 0 until listPlaceResponseModel.data?.size!!){
+        for(i: Int in 0 until listPlaceResponseModel.data.size){
             val vm = ItemListPlaceViewModel(listPlaceResponseModel.data[i], this)
             listPlace.add(vm)
         }

@@ -3,7 +3,7 @@ package com.dot.dotkotlinboilerplate.menu.listplace.viewmodels
 import android.databinding.ObservableField
 import android.view.View
 import com.dot.dotkotlinboilerplate.menu.listplace.AdapterOnClickListener
-import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel.ListPlaceModel
 
 class ItemListPlaceViewModel(private val model: ListPlaceModel, private val adapterOnClickListener: AdapterOnClickListener) {
 
