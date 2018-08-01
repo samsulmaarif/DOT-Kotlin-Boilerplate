@@ -18,5 +18,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".menu.listplace.views.DetailMainActivity"/>
+
     </application>
 </manifest>

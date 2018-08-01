@@ -2,6 +2,7 @@ package com.dot.dotkotlinboilerplate.menu.listplace.views
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -86,6 +87,9 @@ class MainActivity: AppCompatActivity(), AdapterOnClickListener {
 
     override fun onItemClickListener(listPlaceModel: ListPlaceModel) {
         Log.d(AppConstants.TAG_DEBUG,"MainActivity # $listPlaceModel")
+        val intent = Intent(this, DetailMainActivity::class.java)
+        intent.putExtra(DetailMainActivity.EXTRA_DATA_LIST, listPlaceModel)
+        startActivity(intent)
     }
 
 }
