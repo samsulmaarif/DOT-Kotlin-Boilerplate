@@ -6,27 +6,27 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ListPlaceJava implements Parcelable {
+public class ListPlaceModel implements Parcelable {
 
     @SerializedName("name") @Expose public String name;
     @SerializedName("location") @Expose public String location;
     @SerializedName("image") public String image;
 
-    protected ListPlaceJava(Parcel in) {
+    protected ListPlaceModel(Parcel in) {
         this.name = in.readString();
         this.location = in.readString();
         this.image = in.readString();
     }
 
-    public static final Creator<ListPlaceJava> CREATOR = new Creator<ListPlaceJava>() {
+    public static final Creator<ListPlaceModel> CREATOR = new Creator<ListPlaceModel>() {
         @Override
-        public ListPlaceJava createFromParcel(Parcel in) {
-            return new ListPlaceJava(in);
+        public ListPlaceModel createFromParcel(Parcel in) {
+            return new ListPlaceModel(in);
         }
 
         @Override
-        public ListPlaceJava[] newArray(int size) {
-            return new ListPlaceJava[size];
+        public ListPlaceModel[] newArray(int size) {
+            return new ListPlaceModel[size];
         }
     };
 

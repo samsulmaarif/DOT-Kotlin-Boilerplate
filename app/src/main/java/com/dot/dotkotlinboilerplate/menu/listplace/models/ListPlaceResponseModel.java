@@ -12,11 +12,11 @@ import java.util.List;
 public class ListPlaceResponseModel implements Parcelable {
 
     @SerializedName("status_code") @Expose public Integer statusCode;
-    @SerializedName("data") @Expose public List<ListPlaceJava> data = new ArrayList<>();
+    @SerializedName("data") @Expose public List<ListPlaceModel> data = new ArrayList<>();
 
     protected ListPlaceResponseModel(Parcel in) {
         this.statusCode = in.readInt();
-        in.readList(data, ListPlaceJava.class.getClassLoader());
+        in.readList(data, ListPlaceModel.class.getClassLoader());
     }
 
     public static final Creator<ListPlaceResponseModel> CREATOR = new Creator<ListPlaceResponseModel>() {

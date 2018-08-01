@@ -6,15 +6,19 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.dot.dotkotlinboilerplate.R
+import com.dot.dotkotlinboilerplate.data.AppConstants
 import com.dot.dotkotlinboilerplate.databinding.ActivityMainBinding
+import com.dot.dotkotlinboilerplate.menu.listplace.AdapterOnClickListener
 import com.dot.dotkotlinboilerplate.menu.listplace.adapters.ListPlaceAdapter
+import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceModel
 import com.dot.dotkotlinboilerplate.menu.listplace.models.ListPlaceResponseModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.ItemListPlaceViewModel
 import com.dot.dotkotlinboilerplate.menu.listplace.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity(), AdapterOnClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -72,12 +76,16 @@ class MainActivity: AppCompatActivity() {
     private fun onListDataChange(listPlaceResponseModel: ListPlaceResponseModel){
         listPlace.clear()
         for(i: Int in 0 until listPlaceResponseModel.data?.size!!){
-            val vm = ItemListPlaceViewModel(listPlaceResponseModel.data[i])
+            val vm = ItemListPlaceViewModel(listPlaceResponseModel.data[i], this)
             listPlace.add(vm)
         }
         recyclerViewMain.post {
             adapter.notifyDataSetChanged()
         }
+    }
+
+    override fun onItemClickListener(listPlaceModel: ListPlaceModel) {
+        Log.d(AppConstants.TAG_DEBUG,"MainActivity # $listPlaceModel")
     }
 
 }
