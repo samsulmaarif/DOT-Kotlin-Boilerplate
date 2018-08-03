@@ -17,7 +17,7 @@ pipeline {
         // Compile the app and its dependencies
         sh 'if [[ -d $WORKSPACE/.android ]]; then echo ".android already exist"; else mkdir -p $WORKSPACE/.android; fi'
         sh 'touch $WORKSPACE/.android/repositories.cfg'
-        sh 'touch $WORKSPACE/\?/.android/repositories.cfg'
+        sh 'touch $WORKSPACE/?/.android/repositories.cfg'
         sh './gradlew compileDebugSources'
       }
     }
