@@ -1,7 +1,10 @@
 pipeline {
   agent {
     // Run on a build agent where we have the Android SDK installed
-    docker { image 'dotlabs/android-sdk' } 
+    docker { 
+      image 'dotlabs/android-sdk' 
+      args '-v ./:/sdk'
+    } 
   }
   options {
     // Stop the build early in case of compile or test failures
@@ -11,6 +14,8 @@ pipeline {
     stage('Compile') {
       steps {
         // Compile the app and its dependencies
+        sh 'mkdir .android'
+        sh 'touch .android/repositories.cfg'
         sh './gradlew compileDebugSources'
       }
     }
@@ -26,6 +31,8 @@ pipeline {
     stage('Build APK') {
       steps {
         // Finish building and packaging the APK
+        sh 'mkdir .android'
+        sh 'touch .android/repositories.cfg'
         sh './gradlew assembleDebug'
 
         // Archive the APKs so that they can be downloaded from Jenkins
