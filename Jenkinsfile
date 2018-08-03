@@ -18,7 +18,7 @@ pipeline {
         sh 'if [[ -d $WORKSPACE/.android ]]; then echo ".android already exist"; else mkdir -p $WORKSPACE/.android; fi'
         sh 'touch $WORKSPACE/.android/repositories.cfg'
         sh 'touch $WORKSPACE/?/.android/repositories.cfg'
-        sh './gradlew compileDebugSources'
+        //sh './gradlew compileDebugSources -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
       }
     }
     // stage('Unit test') {
@@ -33,7 +33,8 @@ pipeline {
     stage('Build APK') {
       steps {
         // Finish building and packaging the APK
-        sh './gradlew assembleDebug'
+        sh './gradlew assembleDebug -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
+        sh './gradlew assembleRelease -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
 
         // Archive the APKs so that they can be downloaded from Jenkins
         archiveArtifacts '**/*.apk'
