@@ -2,15 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'org.jetbrains.kotlin.android.extensions'
 
 android {
     signingConfigs {
         config {
             keyAlias 'boilerplate'
-            keyPassword 'buronanmertua'
+            keyPassword KEY_PASSWORD
             storeFile file('../kotlin-boilerplate.keystore')
-            storePassword 'buronanmertua'
+            storePassword KEY_PASSWORD
         }
     }
     compileSdkVersion project.compileSdkVersion.toInteger()
@@ -21,6 +20,7 @@ android {
         versionCode project.versionCode.toInteger()
         versionName project.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", applicationId+"-v"+versionCode+"("+versionName+")")
     }
     buildTypes {
         release {
@@ -36,7 +36,10 @@ android {
     }
     flavorDimensions "default"
     productFlavors {
-        dev {
+        development {
+            buildConfigField "String", "BASE_URL", "\"https://info-madiun.firebaseapp.com/\""
+        }
+        production {
             buildConfigField "String", "BASE_URL", "\"https://info-madiun.firebaseapp.com/\""
         }
     }
