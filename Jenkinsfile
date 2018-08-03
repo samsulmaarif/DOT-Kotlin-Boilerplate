@@ -3,7 +3,8 @@ pipeline {
     // Run on a build agent where we have the Android SDK installed
     docker { 
       image 'dotlabs/android-sdk' 
-      args '-v /sdk'
+      args '-v ${PWD}:/sdk/platforms'
+      reuseNode true
     } 
   }
   options {
