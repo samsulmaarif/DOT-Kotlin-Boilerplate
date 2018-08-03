@@ -15,8 +15,9 @@ pipeline {
     stage('Compile') {
       steps {
         // Compile the app and its dependencies
-        sh 'mkdir .android'
-        sh 'touch .android/repositories.cfg'
+        sh 'if [[ -d $WORKSPACE/.android ]]; then echo ".android already exist"; else mkdir -p $WORKSPACE/.android; fi'
+        sh 'touch $WORKSPACE/.android/repositories.cfg'
+        sh 'touch $WORKSPACE/\?/.android/repositories.cfg'
         sh './gradlew compileDebugSources'
       }
     }
@@ -32,8 +33,6 @@ pipeline {
     stage('Build APK') {
       steps {
         // Finish building and packaging the APK
-        sh 'mkdir .android'
-        sh 'touch .android/repositories.cfg'
         sh './gradlew assembleDebug'
 
         // Archive the APKs so that they can be downloaded from Jenkins
