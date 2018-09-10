@@ -17,6 +17,7 @@ pipeline {
         // Compile the app and its dependencies
         sh 'if [[ -d $WORKSPACE/.android ]]; then echo ".android already exist"; else mkdir -p $WORKSPACE/.android; fi'
         sh 'touch $WORKSPACE/.android/repositories.cfg'
+        sh 'if [[ -d $WORKSPACE/?/.android ]]; then echo ".android already exist"; else mkdir -p $WORKSPACE/?/.android; fi'
         sh 'touch $WORKSPACE/?/.android/repositories.cfg'
         //sh './gradlew compileDebugSources -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
       }
@@ -79,11 +80,11 @@ pipeline {
     //   }
     // }
   }
-  post {
-    failure {
+  //post {
+  //  failure {
       // Notify developer team of the failure
-      mail to: 'samsul@dot-indonesia.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
-    }
-  }
+  //    mail to: 'samsul@dot-indonesia.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
+  //  }
+  //}
 }
 
