@@ -35,7 +35,7 @@ pipeline {
       steps {
         // Finish building and packaging the APK
         sh './gradlew assembleDebug -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
-        sh './gradlew assembleRelease -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
+        //sh './gradlew assembleRelease -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300'
 
         // Archive the APKs so that they can be downloaded from Jenkins
         archiveArtifacts '**/*.apk'
